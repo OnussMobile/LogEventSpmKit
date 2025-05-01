@@ -273,7 +273,7 @@ public class LogEventSqlManager {
         
     }
     
-    static func updateUserEventsCount(uEventId: UserEventId) -> Bool? {
+    public static func updateUserEventsCount(uEventId: UserEventId) -> Bool? {
         guard let database = DatabaseServiceLogEvent.getDatabaseLogEvent() else {
             print("Datastore connection error")
             return nil
