@@ -9,6 +9,36 @@ import Foundation
 import FirebaseAnalytics
 import SwiftUI
 
+public class AnalyticsFunction {
+    static let shared = AnalyticsFunction()
+    private init() {}
+    
+    public func logEventAnalytic(_ eventType: AnalyticsEventType, parameters: [String: Any]? = nil) {
+        AnalyticsManager.shared.logEvent(eventType, parameters: parameters)
+    }
+    
+    public func logScreenViewAnalytic(screenName: String, screenClass: String) {
+        AnalyticsManager.shared.logScreenView(screenName: screenName, screenClass: screenClass)
+    }
+    
+    public func logScreenEventAnalytic(screenName: String) {
+        AnalyticsManager.shared.logScreenEvent(screenName: screenName)
+    }
+    
+    public func logButtonClickAnalytic(buttonName: ButtonnameEnums, screenName: ScreenNameEnums, items: String = "", firebaseAnalyticsUserId: CLong) {
+        AnalyticsManager.shared.logButtonClick(buttonName: buttonName, screenName: screenName, items: items, firebaseAnalyticsUserId: firebaseAnalyticsUserId)
+    }
+    
+    public func logErrorEvent(_ logHistoryId: LogHistoryId, logHistoryType: LogHistoryType, desc: String = "", degress: LogHistoryDegress, source: LogHistorySource = .mbl) {
+        AnalyticsManager.shared.logErrorEvent(logHistoryId, logHistoryType: logHistoryType, desc: desc, degress: degress, source: source)
+    }
+    
+    public func logNavigation(from: String, to: String, type: String) {
+        AnalyticsManager.shared.logNavigation(from: from, to: to, type: type)
+    }
+    
+}
+
 public class AnalyticsManager {
     static let shared = AnalyticsManager()
     
@@ -34,7 +64,6 @@ public class AnalyticsManager {
     }
     
     public func logButtonClick(buttonName: ButtonnameEnums, screenName: ScreenNameEnums, items: String = "", firebaseAnalyticsUserId: CLong) {
-        
         
         let parameters: [String: Any] = [
             AnalyticsParameterItemName: buttonName.rawValue,
@@ -127,9 +156,9 @@ public struct ScreenNameEnums: RawRepresentable, Codable, Hashable {
     }
 
     // Statik olarak tanımlanmış örnekler
+    public static let none_screen = ScreenNameEnums(rawValue: "none_screen")
     public static let login_screen = ScreenNameEnums(rawValue: "login_screen")
     public static let register_screen = ScreenNameEnums(rawValue: "register_screen")
-
 
 }
 
@@ -147,8 +176,8 @@ public struct ButtonnameEnums: RawRepresentable, Codable, Hashable {
     }
 
     // Statik olarak tanımlanmış örnekler
+    public static let none_button = ButtonnameEnums(rawValue: "none_button")
     public static let login_button = ButtonnameEnums(rawValue: "login_button")
     public static let register_button = ButtonnameEnums(rawValue: "register_button")
-
 
 }

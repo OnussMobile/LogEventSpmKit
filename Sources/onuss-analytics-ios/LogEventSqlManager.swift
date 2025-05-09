@@ -67,6 +67,7 @@ public class LogEventSqlManager {
     }
     
     public static func insertLogHistory(_ contactValues: LogHistoryModel) -> Bool? {
+        
         guard let database = DatabaseServiceLogEvent.getDatabaseLogEvent() else {
             print("Datastore connection error")
             return nil

@@ -7,9 +7,10 @@
 
 import Foundation
 
-/*updateSqlLogHistory(.sqlinit, logHistoryType: .sql, desc: "\(error)", degress: .error)
+//updateSqlLogHistory(.sqlinit, logHistoryType: .sql, desc: "\(error)", degress: .error)
 
 func updateSqlLogHistory(_ logHistoryId: LogHistoryId, logHistoryType: LogHistoryType, desc: String = "", degress: LogHistoryDegress, source: LogHistorySource = .mbl, comment: String = "") {
+    CrashlyticsLogger.log(from: LogHistoryModel(LogHistoryPageType: pageType, LogHistoryMxRoute: SQLiteCommands.getUser(type: 123)?.CompanyUserId ?? -1, LogHistoryMxBlock: SQLiteCommands.getUser(type: 125)?.CompanyUserId ?? -1, LogHistoryType: logHistoryType, LogHistoryId: logHistoryId, LogHistoryDesc: desc, LogHistoryCount: 1, LogHistoryDegress: degress, LogHistorySource: source, LogHistoryComment: comment))
     var array = LogEventSqlManager.getLogHistoryModelArray()
     if array != [] {
         if array!.contains(where: { $0.LogHistoryId == logHistoryId }) {
@@ -27,7 +28,7 @@ func updateSqlLogHistory(_ logHistoryId: LogHistoryId, logHistoryType: LogHistor
     }
 }
 
-func setMobileLog(isEndday: Bool = false, log: LogHistoryModel) {
+/*func setMobileLog(isEndday: Bool = false, log: LogHistoryModel) {
     
     let mobileId: String = preferences.string(forKey: "token") ?? ""
     

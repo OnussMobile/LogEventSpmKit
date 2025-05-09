@@ -5,22 +5,31 @@
 //  Created by Mustafa Alper Aydin on 30.04.2025.
 //
 
+import SwiftUICore
+
 
 //updateSqlUserEvent(.eventNull)
+//updateSqlUserEvent(.eventNull, buttonName: .none_button, screenName: .login_screen, firebaseAnalyticsUserId: 1) butonsuz bir userevent ise none_button - sayfa gönderilmeyecek ise none_screen
 
-/*
-func updateSqlUserEvent(_ userEventId: UserEventId) {
+
+func updateSqlUserEvent(_ userEventId: UserEventId, buttonName: ButtonnameEnums, screenName: ScreenNameEnums, items: String = "", firebaseAnalyticsUserId: CLong) {
     var array = LogEventSqlManager.getUserEventModelArray()
+    if buttonName != .none_button {
+        AnalyticsFunction.shared.logButtonClickAnalytic(buttonName: buttonName, screenName: screenName, items: items, firebaseAnalyticsUserId: firebaseAnalyticsUserId)
+    }
+    if screenName != .none_screen {
+        AnalyticsFunction.shared.logScreenEventAnalytic(screenName: screenName.rawValue)
+    }
     if array != [] {
         if array!.contains(where: { $0.UserEventId == userEventId }) {
             LogEventSqlManager.updateUserEventsCount(uEventId: userEventId)
         } else {
-            LogEventSqlManager.insertUserEvents(UserEventModel(UserEventMxRoute: SQLiteCommands.getUser(type: 123)?.MxRouteId ?? -1, UserEventMxBlock: SQLiteCommands.getUser(type: 123)?.MxBlockId ?? -1, UserEventId: userEventId, UserEventCount: 1))
+            //LogEventSqlManager.insertUserEvents(UserEventModel(UserEventMxRoute: SQLiteCommands.getUser(type: 123)?.MxRouteId ?? -1, UserEventMxBlock: SQLiteCommands.getUser(type: 123)?.MxBlockId ?? -1, UserEventId: userEventId, UserEventCount: 1))
         }
     } else {
-        LogEventSqlManager.insertUserEvents(UserEventModel(UserEventMxRoute: SQLiteCommands.getUser(type: 123)?.MxRouteId ?? -1, UserEventMxBlock: SQLiteCommands.getUser(type: 125)?.MxBlockId ?? -1, UserEventId: userEventId, UserEventCount: 1))
+        //LogEventSqlManager.insertUserEvents(UserEventModel(UserEventMxRoute: SQLiteCommands.getUser(type: 123)?.MxRouteId ?? -1, UserEventMxBlock: SQLiteCommands.getUser(type: 125)?.MxBlockId ?? -1, UserEventId: userEventId, UserEventCount: 1))
     }
-} */
+}
 
 
 public struct UserEventModel : Codable, Hashable{
@@ -29,7 +38,6 @@ public struct UserEventModel : Codable, Hashable{
     public var UserEventMxBlock: Int = -1
     public var UserEventId: UserEventId = .eventNull
     public var UserEventCount: Int = 0
-
 
     public init(){ }
     

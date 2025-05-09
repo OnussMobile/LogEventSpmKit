@@ -4,15 +4,15 @@
 import PackageDescription
 
 let package = Package(
-    name: "LogEventSpmKit",
+    name: "onuss-analytics-ios",
     platforms: [
         .iOS(.v15)
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "LogEventSpmKit",
-            targets: ["LogEventSpmKit"]),
+            name: "onuss-analytics-ios",
+            targets: ["onuss-analytics-ios"]),
     ],
     dependencies: [
         .package(url: "https://github.com/stephencelis/SQLite.swift.git", from: "0.13.3"),
@@ -23,10 +23,11 @@ let package = Package(
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "LogEventSpmKit",
+            name: "onuss-analytics-ios",
             dependencies: [
                 .product(name: "SQLite", package: "SQLite.swift"),
-                .product(name: "FirebaseAnalytics", package: "firebase-ios-sdk")
+                .product(name: "FirebaseAnalytics", package: "firebase-ios-sdk"),
+                .product(name: "FirebaseCrashlytics", package: "firebase-ios-sdk")
             ],
         ),
     ]
